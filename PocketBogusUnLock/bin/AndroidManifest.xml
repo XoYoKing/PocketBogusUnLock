@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.devking.pocket"
+    android:versionCode="1"
+    android:versionName="1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+	<uses-permission  android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <application
+        android:name="com.devking.pocket.PocketApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.devking.pocket.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <service 
+            android:name="com.devking.pocket.PocketServices"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.devking.service.proximityService"/>
+            </intent-filter>
+        </service>
+        
+        <receiver 
+            android:name="com.devking.pocket.MyAdmin" 
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin"
+                android:resource="@xml/my_admin"/>
+            <intent-filter >
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+            </intent-filter>
+        </receiver>
+        <uses-permission  android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    </application>
+
+</manifest>
